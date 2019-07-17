@@ -1,0 +1,223 @@
+{
+  "info": {
+    "description": "COCO 2017 Dataset",
+    "url": "http://cocodataset.org",
+    "version": "1.0",
+    "year": 2017,
+    "contributor": "COCO Consortium",
+    "date_created": "2017/09/01"
+  },
+  "licenses": [
+    {
+      "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/",
+      "id": 1,
+      "name": "Attribution-NonCommercial-ShareAlike License"
+    },
+    {
+      "url": "http://creativecommons.org/licenses/by-nc/2.0/",
+      "id": 2,
+      "name": "Attribution-NonCommercial License"
+    },
+    {
+      "url": "http://creativecommons.org/licenses/by-nc-nd/2.0/",
+      "id": 3,
+      "name": "Attribution-NonCommercial-NoDerivs License"
+    },
+    {
+      "url": "http://creativecommons.org/licenses/by/2.0/",
+      "id": 4,
+      "name": "Attribution License"
+    },
+    {
+      "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+      "id": 5,
+      "name": "Attribution-ShareAlike License"
+    },
+    {
+      "url": "http://creativecommons.org/licenses/by-nd/2.0/",
+      "id": 6,
+      "name": "Attribution-NoDerivs License"
+    },
+    {
+      "url": "http://flickr.com/commons/usage/",
+      "id": 7,
+      "name": "No known copyright restrictions"
+    },
+    {
+      "url": "http://www.usa.gov/copyright.shtml",
+      "id": 8,
+      "name": "United States Government Work"
+    }
+  ],
+  "images": [
+    {
+      "license": 4,
+      "file_name": "000000397133.jpg",
+      "coco_url": "http://images.cocodataset.org/val2017/000000397133.jpg",
+      "height": 427,
+      "width": 640,
+      "date_captured": "2013-11-14 17:02:52",
+      "flickr_url": "http://farm7.staticflickr.com/6116/6255196340_da26cf2c9e_z.jpg",
+      "id": 397133
+    },
+    {
+      "license": 2,
+      "file_name": "000000015335.jpg",
+      "coco_url": "http://images.cocodataset.org/val2017/000000015335.jpg",
+      "height": 480,
+      "width": 640,
+      "date_captured": "2013-11-25 14:00:10",
+      "flickr_url": "http://farm6.staticflickr.com/5533/10257288534_c916fafd78_z.jpg",
+      "id": 15335
+    }
+  ],
+  "annotations": [
+  	{
+      "segmentation": [
+        [
+          428.68,
+          196.09,
+          429.23,
+          205.62,
+          430.59,
+          218.14,
+          431.13,
+          222.22,
+          430.04,
+          235.02,
+          422.97,
+          250.54,
+          408.81,
+          249.45,
+          404.72,
+          246.18,
+          402.0,
+          242.64,
+          395.47,
+          239.65,
+          394.11,
+          232.84,
+          395.47,
+          227.67,
+          402.27,
+          224.67,
+          410.17,
+          220.86,
+          409.35,
+          206.43,
+          406.08,
+          199.63,
+          406.08,
+          195.81,
+          425.14,
+          193.36,
+          428.41,
+          196.36
+        ]
+      ],
+      "area": 1391.5715999999995,
+      "iscrowd": 0,
+      "image_id": 246963,
+      "bbox": [
+        394.11,
+        193.36,
+        37.02,
+        57.18
+      ],
+      "category_id": 4,
+      "id": 153356
+    },
+    {
+      "segmentation": [
+        [
+          224.24,
+          297.18,
+          228.29,
+          297.18,
+          234.91,
+          298.29,
+          243.0,
+          297.55,
+          249.25,
+          296.45,
+          252.19,
+          294.98,
+          256.61,
+          292.4,
+          254.4,
+          264.08,
+          251.83,
+          262.61,
+          241.53,
+          260.04,
+          235.27,
+          259.67,
+          230.49,
+          259.67,
+          233.44,
+          255.25,
+          237.48,
+          250.47,
+          237.85,
+          243.85,
+          237.11,
+          240.54,
+          234.17,
+          242.01,
+          228.65,
+          249.37,
+          224.24,
+          255.62,
+          220.93,
+          262.61,
+          218.36,
+          267.39,
+          217.62,
+          268.5,
+          218.72,
+          295.71,
+          225.34,
+          297.55
+        ]
+      ],
+      "area": 1481.3806499999994,
+      "iscrowd": 0,
+      "image_id": 397133,
+      "bbox": [
+        217.62,
+        240.54,
+        38.99,
+        57.75
+      ],
+      "category_id": 44,
+      "id": 82445
+    }
+  ],
+  "categories": [
+    {
+      "supercategory": "person",
+      "id": 1,
+      "name": "person"
+    },
+    {
+      "supercategory": "vehicle",
+      "id": 4,
+      "name": "motorcycle"
+    },
+    {
+      "supercategory": "kitchen",
+      "id": 44,
+      "name": "bottle"
+    },
+    {
+      "supercategory": "kitchen",
+      "id": 46,
+      "name": "wine glass"
+    },
+    {
+      "supercategory": "indoor",
+      "id": 90,
+      "name": "toothbrush"
+    }
+  ]
+}
