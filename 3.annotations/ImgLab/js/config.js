@@ -164,6 +164,6 @@ var pluginsStore = {
     }
 }
 
-var suggestedCategories = ["outdoor_cannabis", "hoop_greenhouse", "framed_greenhouse", "greenhouse_footprint", "pond", "water_tank", ];
+var suggestedCategories = ["", ];
 var suggestedTags = [];
 var suggestedAttributes = {};
