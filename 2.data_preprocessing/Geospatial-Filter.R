@@ -11,8 +11,6 @@ library(units)
     dist_tolerance <- set_units(x = dist_tolerance, value = 'm')
 
 # set the path to the folder containing the images
-    # image_name <- 'G0015937.JPG'
-    # image_path <- 'C:\\David\\Trash-ComputerVision\\Images_For_Corey\\Trash_Test_Images'
     image_path <- 'C:\\David\\Trash-ComputerVision\\Survey_20170809\\101GOPRO'
     files_list <- list.files(image_path)
 
