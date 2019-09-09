@@ -1,5 +1,7 @@
 ## Welcome to the Trash Tracker Site
-This site will serve as a repository for the [California State Water Resources Control Board's](https://www.waterboards.ca.gov/ "Water Board Homepage") Trash Tracker project, which is being led by the Board's Office of Information Management and Analysis. Through this project we aim to develop new methods to monitor and assess trash contained in locations that could potentially enter and impair waterbodies, using machine learning tools paired with large image libraries obtained from cameras deployed in key areas. We ultimately hope to develop a robust and accurate computer vision model, along with associated procedures and protocols for image collection and other aspects of study design, which will be provided on this site in a free and open-source format when completed and validated. The resulting model and data collection methods could then be applied wherever more data is needed to help mitigate water pollution caused by trash, and to demonstrate compliance with associated regulations.
+This site will serve as a repository for the [California State Water Resources Control Board's](https://www.waterboards.ca.gov/ "Water Board Homepage") Trash Tracker project, which is being led by the Board's Office of Information Management and Analysis, as well as catalog of related efforts around the state and beyond to better assess and analyze trash pollution and its effects. 
+
+Through the Water Board's Trash Tracker project we aim to develop new methods to monitor and assess trash contained in locations that could potentially enter and impair waterbodies, using machine learning tools paired with large image libraries obtained from cameras deployed in key areas. We ultimately hope to develop a robust and accurate computer vision model, along with associated procedures and protocols for image collection and other aspects of study design, which will be provided on this site in a free and open-source format when completed and validated. The resulting model and data collection methods could then be applied wherever more data is needed to help mitigate water pollution caused by trash, and to demonstrate compliance with associated regulations.
 
 Please check back in the future for updates and more information as the project progresses.
 
@@ -16,3 +18,9 @@ Ultimately, the State Water Board must be able to tell a compelling story about 
 
 ### Current Status
 To develop and test this methodology, we have been working on a pilot project in partnership with the City of West Sacramento. For this project we collected images using cameras mounted to the front of the city’s street sweepers — which show the condition of the city’s streets prior to cleaning — and used the resulting image dataset to develop a proof-of-concept tool that identifies and classifies trash in images using a customized machine learning model. We are currently working to develop and verify a more robust and accurate model for trash identification and classification, along with more detailed procedures and protocols for image collection and other aspects of study design. The tools and procedures will be freely distributed through this site once completed. 
+
+### Related Efforts
+- [Code for Sacramento's Litter Detection with Microsoft Custom Vision](https://github.com/walteryu/code4sac/tree/master/custom-vision)
+- [Collaborative Trash Data Model Development Project](https://github.com/CAWaterBoardDataCenter/TrashDataModel)
+- [2018 Trash Data Dive Project Repositories](https://github.com/SCCWRP/2018TrashDataDive)
+- [California Trash Monitoring Methods Project](https://sites.google.com/sfei.org/trash/)
