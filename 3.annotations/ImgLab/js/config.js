@@ -164,6 +164,6 @@ var pluginsStore = {
     }
 }
 
-var suggestedCategories = ["", ];
+var suggestedCategories = ["cig_butt","trash", "apple_core", ];
 var suggestedTags = [];
 var suggestedAttributes = {};

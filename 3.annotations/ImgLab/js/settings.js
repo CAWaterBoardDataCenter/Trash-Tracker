@@ -4,7 +4,7 @@ var appConfig = {
         enable : true,
         deleteIfExported: true, //Mark the data as saved when exported as nimn format, and delte the copy from browser cache.
     },
-    zoomStepSize: 4.25,
+    zoomStepSize: 0.20,
     featurePointColor: '#ee0000'
 };
 function displaySettingsModal(){
@@ -14,7 +14,7 @@ function displaySettingsModal(){
         escapeKey: true,
         backgroundDismiss: true,
         useBootstrap : false,
-        boxWidth : 470,
+        boxWidth : 100,
         onContentReady: function(){
             riot.mount('settings-window');
         }

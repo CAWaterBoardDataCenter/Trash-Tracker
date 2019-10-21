@@ -6,14 +6,25 @@ library(lubridate)
 library(sf)
 library(units)
 
+#---- USER SUPPLIED INFORMATION --------------------------------------------------------------------------------------------#
 # enter the tolerance (in meters)
     dist_tolerance <- 1.5
     dist_tolerance <- set_units(x = dist_tolerance, value = 'm')
+    
+# set the path to the source (original images) and destination (filtered images) folders
+    survey_day <- 'Survey_20170809'
+    survey_subfolder <- '100GOPRO'
+    filtered_images_folder <- 'Filtered-Images-2019-10'
+    base_folder <- 'E:\\TrashTracker\\'
+#---------------------------------------------------------------------------------------------------------------------------#
 
-# set the path to the folder containing the images
-    image_path <- 'C:\\David\\Trash-ComputerVision\\Survey_20170809\\101GOPRO'
-    files_list <- list.files(image_path)
-
+# create the paths
+    image_source_path <- paste0(base_folder, 'Trash_Images_Originals', '\\', survey_day, '\\', survey_subfolder)
+    image_filter_path <- paste0(base_folder, filtered_images_folder, '\\', survey_day, '\\', survey_subfolder)
+    
+# get a list of the images in the source folder
+    files_list <- list.files(image_source_path)
+    
 # create empty data frame
     image_metadata_names <- c('file_name', 'date_time', 'latitude', 'longitude')
     df_image_metadata <- data.frame(matrix(nrow = 0, 
@@ -22,12 +33,12 @@ library(units)
                                             )
                                      ) %>% as_tibble()
 
-# cycle through images
+# cycle through images and get the metadata
     time_check <- vector()
     for (image_numb in seq(length(files_list))) {
         time_check[image_numb] <- now()
         # read the image
-            trash_image <- image_read(paste0(image_path, '\\', files_list[image_numb]))
+            trash_image <- image_read(paste0(image_source_path, '\\', files_list[image_numb]))
         # extract the full metadata
             image_metadata_full <- image_attributes(trash_image)
         # extract and format the image coordinates
@@ -66,14 +77,14 @@ library(units)
 # time check
     time_elapsed <- time_check[length(time_check)] - time_check[1]
 
-# arrange by date
+# arrange by timestamp
     df_image_metadata <- df_image_metadata %>% arrange(date_time)
     
 # convert to sf
     image_metadata_sf <- st_as_sf(x = df_image_metadata, coords = c('longitude', 'latitude'), crs = 4326)
     
 # plot points
-    mapview::mapview(image_metadata_sf)
+    # mapview::mapview(image_metadata_sf)
     
 # compute distance (NOTE - for more info see: https://github.com/r-spatial/sf/issues/799)
     empty <- st_as_sfc("POINT(EMPTY)")
@@ -92,16 +103,19 @@ library(units)
     image_metadata_sf <- image_metadata_sf %>% mutate(duplicate_2 = case_when(distance_to_next > dist_tolerance ~ FALSE, 
                                                                             TRUE ~ TRUE))
 # copy the unique and duplicate images to new folders (NOTE: Duplicates also includes the first (distinct) image in a string of duplicate images, for comparison (this first image is also copied to the distinct folder). So, the sum of the number of images in the distinct and duplicate folders is greater than the number of original images.
-    dir.create(path = paste0(image_path, '\\Duplicates'))
-    dir.create(path = paste0(image_path, '\\Distinct'))
+    # dir.create(path = paste0(image_path, '\\Duplicates'))
+    # dir.create(path = paste0(image_path, '\\Distinct'))
+    if (!dir.exists(image_filter_path)) {
+        dir.create(image_filter_path, recursive = TRUE)
+    }
     for (i in seq(nrow(image_metadata_sf))) {
-        if (image_metadata_sf$duplicate[i] == TRUE | image_metadata_sf$duplicate_2[i] == TRUE) {
-            file.copy(from = paste0(image_path, '\\', image_metadata_sf$file_name[i]), 
-                      to = paste0(image_path, '\\Duplicates\\', image_metadata_sf$file_name[i]))
-        }
-        if (image_metadata_sf$duplicate[i] == FALSE) {
-            file.copy(from = paste0(image_path, '\\', image_metadata_sf$file_name[i]), 
-                      to = paste0(image_path, '\\Distinct\\', image_metadata_sf$file_name[i]))
+        # if (image_metadata_sf$duplicate[i] == TRUE | image_metadata_sf$duplicate_2[i] == TRUE) {
+        #     file.copy(from = paste0(image_source_path, '\\', image_metadata_sf$file_name[i]), 
+        #               to = paste0(image_filter_path, '\\Duplicates\\', image_metadata_sf$file_name[i]))
+        # }
+        if (image_metadata_sf$duplicate[i] == FALSE | i == 1) {
+            file.copy(from = paste0(image_source_path, '\\', image_metadata_sf$file_name[i]), 
+                      to = paste0(image_filter_path, '\\', image_metadata_sf$file_name[i]))
         }
     }
     
