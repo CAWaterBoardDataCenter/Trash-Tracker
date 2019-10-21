@@ -16,6 +16,9 @@ library(units)
     survey_subfolder <- '100GOPRO'
     filtered_images_folder <- 'Filtered-Images-2019-10'
     base_folder <- 'E:\\TrashTracker\\'
+    
+# flag to determine whether or not to copy duplicates (if true, creates a subfolder in the destination folder with all of the duplicate images - just used as a check, not needed)
+    copy_duplicates <- FALSE
 #---------------------------------------------------------------------------------------------------------------------------#
 
 # create the paths
@@ -102,23 +105,30 @@ library(units)
                                                                             TRUE ~ TRUE))
     image_metadata_sf <- image_metadata_sf %>% mutate(duplicate_2 = case_when(distance_to_next > dist_tolerance ~ FALSE, 
                                                                             TRUE ~ TRUE))
-# copy the unique and duplicate images to new folders (NOTE: Duplicates also includes the first (distinct) image in a string of duplicate images, for comparison (this first image is also copied to the distinct folder). So, the sum of the number of images in the distinct and duplicate folders is greater than the number of original images.
-    # dir.create(path = paste0(image_path, '\\Duplicates'))
-    # dir.create(path = paste0(image_path, '\\Distinct'))
+# copy the unique (and if needed the duplicates too) images to new folders (NOTE: Duplicates also includes the first (distinct) image in a string of duplicate images, for comparison (this first image is also copied to the distinct folder). So, the sum of the number of images in the distinct and duplicate folders is greater than the number of original images.
     if (!dir.exists(image_filter_path)) {
         dir.create(image_filter_path, recursive = TRUE)
     }
-    for (i in seq(nrow(image_metadata_sf))) {
-        # if (image_metadata_sf$duplicate[i] == TRUE | image_metadata_sf$duplicate_2[i] == TRUE) {
-        #     file.copy(from = paste0(image_source_path, '\\', image_metadata_sf$file_name[i]), 
-        #               to = paste0(image_filter_path, '\\Duplicates\\', image_metadata_sf$file_name[i]))
-        # }
+    # copy distinct images
+    for (i in seq(nrow(image_metadata_sf))) {    
         if (image_metadata_sf$duplicate[i] == FALSE | i == 1) {
             file.copy(from = paste0(image_source_path, '\\', image_metadata_sf$file_name[i]), 
                       to = paste0(image_filter_path, '\\', image_metadata_sf$file_name[i]))
+        }    
+    }
+    # copy duplicates (not needed)
+    if (copy_duplicates == TRUE) {
+        if (!dir.exists(paste0(image_filter_path, '\\Duplicates'))) {
+            dir.create(paste0(image_filter_path, '\\Duplicates'), recursive = TRUE)
+        }
+        for (i in seq(nrow(image_metadata_sf))) {
+            if (image_metadata_sf$duplicate[i] == TRUE | image_metadata_sf$duplicate_2[i] == TRUE) {
+                file.copy(from = paste0(image_source_path, '\\', image_metadata_sf$file_name[i]),
+                          to = paste0(image_filter_path, '\\Duplicates\\', image_metadata_sf$file_name[i]))
+            }
         }
     }
-    
-    # calculate percentage of images that are classified as duplicates
+
+    # as a check, calculate percentage of images that are classified as duplicates
         sum(image_metadata_sf$duplicate / nrow(image_metadata_sf))
      
